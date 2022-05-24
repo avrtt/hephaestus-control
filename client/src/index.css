@@ -1,0 +1,129 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    margin: 5% auto;
+    max-width: 73%;
+    line-height: 1.8;
+    font-size: 18px;
+    padding: 0 2.4em;
+    color: #444444;
+    background-color: #f2f2f2;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+h1, h2, h3 {
+	color: #777;
+    line-height: 1;
+}
+
+a {
+    border-bottom: 0; 
+    color: #8e8e8e;
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 0;
+    color: #696969;
+    text-decoration: none;
+}
+
+.header {
+    padding: 0 2.4em 50px 0;
+}
+
+.grid-container {
+    float: right;
+    font-size: 14px;
+}
+
+#grid {
+    border: 8px solid grey;
+}
+
+button {
+	font-size: 14px;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 3% auto;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 9px #999;
+}
+
+button:active {
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
+
+button:disabled {
+	opacity: 0.5; 
+	cursor: not-allowed;
+}
+
+.controllers-coordinates {
+	line-height: 0.4;
+	margin: 3% auto;
+}
+
+#timer {
+	margin: 1% auto;
+}
+
+#set-default-button {
+	background-color: #C4C4C4;
+	margin: 4px;
+}
+
+#start-button {
+	background-color: #6ea5ff;
+	margin: 4px;
+}
+
+#stop-button {
+	background-color: #f54949;
+	margin: 4px;
+}
+
+.left {
+	color: #008300;
+}
+
+.right {
+	color: #0000FF;
+}
+
+.buttons-container {
+	margin: 25px;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

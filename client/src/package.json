@@ -1,0 +1,19 @@
+{
+  "name": "interface",
+  "version": "1.0.0",
+  "description": "hephaestus-control docker image",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "http": "0.0.1-security",
+    "fs": "0.0.1-security",
+    "path": "0.12.7"
+  },
+  "author": "lenferdetroud",
+  "license": "ISC"
+}
