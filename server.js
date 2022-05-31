@@ -1,13 +1,35 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
 const port = process.env.PORT || 3005;
-
+const http = require('http');
+const ws = require('ws');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var controller_coordinates = [
+/*
+const webSocketsServerPort = 8000;
+const webSocketServer = require('websocket').server;
+const http = require('http');
+const server = http.createServer();
+server.listen(webSocketsServerPort);
+const wsServer = new webSocketServer({
+  httpServer: server
+});
+const clients = {};
+const getUniqueID = () => {
+  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  return s4() + s4() + '-' + s4();
+};
+wsServer.on('request', function(request) {
+  var userID = getUniqueID();
+  console.log((new Date()) + ' Recieved a new connection from origin ' + request.origin + '.');
+  const connection = request.accept(null, request.origin);
+  clients[userID] = connection;
+  console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
+});*/
+
+/*var controller_coordinates = [
 			[100, 20],
 			[170, 120],
 			[120, 220],
@@ -16,26 +38,42 @@ var controller_coordinates = [
 			[270, 120],
 			[220, 220],
 			[200, 320]
-		];
+		];*/
 
-app.get('/api/state', (req, res) => {
-    res.send({ express: [
-		controller_coordinates[0][0], controller_coordinates[0][1],
-		controller_coordinates[1][0], controller_coordinates[1][1],
-		controller_coordinates[2][0], controller_coordinates[2][1],
-		controller_coordinates[3][0], controller_coordinates[3][1],
-		controller_coordinates[4][0], controller_coordinates[4][1],
-		controller_coordinates[5][0], controller_coordinates[5][1],
-		controller_coordinates[6][0], controller_coordinates[6][1],
-		controller_coordinates[7][0], controller_coordinates[7][1]
-		] });
-});
+const wss = new ws.Server({noServer: true});
 
-app.post('/api/world', (req, res) => {
-    console.log(req.body);
-    res.send(
-        `I received your POST request. This is what you sent me: ${req.body.post}`,
-    );
-});
+function accept(req, res) {
+  if (!req.headers.upgrade || req.headers.upgrade.toLowerCase() != 'websocket') {
+    res.end();
+    return;
+  }
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+  if (!req.headers.connection.match(/\bupgrade\b/i)) {
+    res.end();
+    return;
+  }
+  
+  wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onConnect);
+}
+
+function onConnect(ws) {
+  ws.on('message', function (message) {
+	controller_coordinates = JSON.parse(message);
+	
+	// здесь controller_coordinates определен
+	console.log(controller_coordinates);
+  });
+} 
+
+// а здесь не определен
+//console.log(controller_coordinates);
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+} else {
+  exports.accept = accept;
+}
+
+// [здесь controller_coordinates заставляет железки двигаться]
+
+

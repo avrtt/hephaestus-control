@@ -1,31 +1,60 @@
 import React, { Component } from 'react';
-import {Helmet} from "react-helmet";
-import styled from "styled-components";
-import Slider from './components/Slider';
 import './index.css';
+import Slider1 from './components/Slider1';
+import Slider2 from './components/Slider2';
+import Slider3 from './components/Slider3';
+import Slider4 from './components/Slider4';
+import Slider5 from './components/Slider5';
+import Slider6 from './components/Slider6';
+import Slider7 from './components/Slider7';
+import Slider8 from './components/Slider8';
+import { value1 } from './components/Slider1';
+import { value2 } from './components/Slider2';
+import { value3 } from './components/Slider3';
+import { value4 } from './components/Slider4';
+import { value5 } from './components/Slider5';
+import { value6 } from './components/Slider6';
+import { value7 } from './components/Slider7';
+import { value8 } from './components/Slider8';
+const spanStyle = {'position': 'absolute'}; 
 
-const Styles = styled.div`
-  .App {
-    display: flex;
-    justify-content: center;
-  }
-  .wrapper {
-    margin-top: 20vh;
-    width: 50%;
-  }
-`;
+var controller_coordinates = [
+			[100, 20],
+			[170, 120],
+			[120, 220],
+			[100, 320],
+			[200, 20],
+			[270, 120],
+			[220, 220],
+			[200, 320]
+		];
+
+/*var controller_coordinates = [
+			[value1, value1],
+			[value2, value2],
+			[value3, value3],
+			[value4, value4],
+			[value5, value5],
+			[value6, value6],
+			[value7, value7],
+			[value8, value8]
+		]; */
+
+const s = JSON.stringify(controller_coordinates);
+
+let socket = new WebSocket("ws://localhost:8080");
+
+socket.onopen = function(e) {
+  socket.send(s);
+};
+
+socket.onmessage = function(event) {
+  controller_coordinates = event;
+};
 
 class App extends Component {
-  state = {
-    response: '',
-    post: '',
-    responseToPost: '',
-  };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
     this.draw()
   }
 
@@ -33,40 +62,7 @@ class App extends Component {
     this.draw()
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/state');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-    const response = await fetch('/api/world', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-    const body = await response.text();
-
-    this.setState({ responseToPost: body });
-  };
-
 draw() {
-	
-	var controller_coordinates = [
-			[this.state.response[0], this.state.response[1]],
-			[this.state.response[2], this.state.response[3]],
-			[this.state.response[4], this.state.response[5]],
-			[this.state.response[6], this.state.response[7]],
-			[this.state.response[8], this.state.response[9]],
-			[this.state.response[10], this.state.response[11]],
-			[this.state.response[12], this.state.response[13]],
-			[this.state.response[14], this.state.response[15]]
-		];
 	
 	var canvas = document.getElementById("grid");
 	if (canvas.getContext) {
@@ -147,30 +143,20 @@ processUnlock() {
 			<div id="grid-coordinates"></div>
 		</div>
 		
-		<div><b>1: </b><span class="left">({this.state.response[0]} {this.state.response[1]})</span>, <span class="right">({this.state.response[8]} {this.state.response[9]})</span></div>
-		<Slider class="drive-slider" color="#008300" />
-		<Slider class="drive-slider" color="#0000FF" />
-		<div><b>2: </b><span class="left">({this.state.response[2]} {this.state.response[3]})</span>, <span class="right">({this.state.response[10]} {this.state.response[11]})</span></div>
-		<Slider class="drive-slider" color="#008300" />
-		<Slider class="drive-slider" color="#0000FF" />
-		<div><b>3: </b><span class="left">({this.state.response[4]} {this.state.response[5]})</span>, <span class="right">({this.state.response[12]} {this.state.response[13]})</span></div>
-		<Slider class="drive-slider" color="#008300" />
-		<Slider class="drive-slider" color="#0000FF" />
-		<div><b>4: </b><span class="left">({this.state.response[6]} {this.state.response[7]})</span>, <span class="right">({this.state.response[14]} {this.state.response[15]})</span></div>
-		<Slider class="drive-slider" color="#008300" />
-		<Slider class="drive-slider" color="#0000FF" />
+		<span style={spanStyle}><b>1:</b></span><Slider1 id="slider1" color="#008300" />
+		<span style={spanStyle}><b> </b></span><Slider2 id="slider2" color="#0000FF" />
+		<span style={spanStyle}><b>2:</b></span><Slider3 id="slider3" color="#008300" />
+		<span style={spanStyle}><b> </b></span><Slider4 id="slider4" color="#0000FF" />
+		<span style={spanStyle}><b>3:</b></span><Slider5 id="slider5" color="#008300" />
+		<span style={spanStyle}><b> </b></span><Slider6 id="slider6" color="#0000FF" />
+		<span style={spanStyle}><b>4:</b></span><Slider7 id="slider7" color="#008300" />
+		<span style={spanStyle}><b> </b></span><Slider8 id="slider8" color="#0000FF" />
 	
 		<div class="buttons-container">
 			<button type="button" class="button" id="set-default-button">НАЧ</button>
 			<button type="button" class="button" id="start-button" onClick={this.processLock}>ВКЛ</button>
 			<button type="button" class="button" id="stop-button" onClick={this.processUnlock}>ВЫКЛ</button>
 		</div>
-		
-		<div>Слайдер скорости (режимы от 1 до 10)</div>
-		<div>При включении блокировать все слайдеры</div>
-		<div>Отправка с фронта в бэк</div>
-		<div>Убрать значения справа от слайдеров для приводов; они должны изменять координаты в скобках</div>
-		
 	</>
     );
   }

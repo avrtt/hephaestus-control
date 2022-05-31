@@ -40,18 +40,22 @@ const Styles = styled.div`
   }
 `;
 
+export var value5;
+
 export default class Slider extends React.Component {
   state = {
-    value: 100
+    value: 250
   }
 
   handleOnChange = (e) => this.setState({ value: e.target.value })
-
+	
+  value5 = this.state.value;
+	
   render() {
     return (
       <Styles opacity={this.state.value > 10 ? (this.state.value / 500) : .1} color={this.props.color}>
         <input type="range" min={0} max={500} value={this.state.value} className="slider" step="10" onChange={this.handleOnChange} />
-        <div className="value">{this.state.value}</div>
+        <div><span class="left">({this.state.value}, {this.state.value})</span></div>
       </Styles>
     )
   }

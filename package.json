@@ -9,8 +9,12 @@
     "dependencies": {
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
+        "mobx": "^6.6.0",
+        "nodemon": "^2.0.16",
         "react-helmet": "^6.1.0",
-        "styled-components": "4.2.0"
+        "styled-components": "4.2.0",
+        "websocket": "^1.0.34",
+        "ws": "^8.7.0"
     },
     "devDependencies": {
         "concurrently": "^4.0.1"

@@ -90,19 +90,14 @@ button:disabled {
 }
 
 .left {
-	color: #008300;
-}
-
-.right {
-	color: #0000FF;
+	color: #444444;
+	margin: 2em;
 }
 
 .buttons-container {
 	margin: 25px;
 	text-align: center;
 }
-
-
 
 
 
