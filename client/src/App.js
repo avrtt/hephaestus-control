@@ -12,14 +12,14 @@ class App extends Component {
 		super(props)
 		this.state = {
 			coords: [
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
-				[0, 0],
+				[50, 50],
+				[50, 50],
+				[50, 50],
+				[50, 50],
+				[50, 50],
+				[50, 50],
+				[50, 50],
+				[50, 50],
 			]
 		}
 	}
@@ -165,14 +165,14 @@ class App extends Component {
 					<div id="grid-coordinates"></div>
 				</div>
 
-				<span style={spanStyle}><b>1:</b></span><Slider id="slider1" color="#008300" value={this.state.coords[0]} onChange={(e) => this.handleOnChange(e, 0)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider2" color="#0000FF" value={this.state.coords[1]} onChange={(e) => this.handleOnChange(e, 1)} />
-				<span style={spanStyle}><b>2:</b></span><Slider id="slider3" color="#008300" value={this.state.coords[2]} onChange={(e) => this.handleOnChange(e, 2)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider4" color="#0000FF" value={this.state.coords[3]} onChange={(e) => this.handleOnChange(e, 3)} />
-				<span style={spanStyle}><b>3:</b></span><Slider id="slider5" color="#008300" value={this.state.coords[4]} onChange={(e) => this.handleOnChange(e, 4)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider6" color="#0000FF" value={this.state.coords[5]} onChange={(e) => this.handleOnChange(e, 5)} />
-				<span style={spanStyle}><b>4:</b></span><Slider id="slider7" color="#008300" value={this.state.coords[6]} onChange={(e) => this.handleOnChange(e, 6)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider8" color="#0000FF" value={this.state.coords[7]} onChange={(e) => this.handleOnChange(e, 7)} />
+				<span style={spanStyle}><b>1:</b></span><Slider id="slider1" color="#008300" value={this.state.coords[0][0]} onChange={(e) => this.handleOnChange(e, 0)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider2" color="#0000FF" value={this.state.coords[1][0]} onChange={(e) => this.handleOnChange(e, 1)} />
+				<span style={spanStyle}><b>2:</b></span><Slider id="slider3" color="#008300" value={this.state.coords[2][0]} onChange={(e) => this.handleOnChange(e, 2)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider4" color="#0000FF" value={this.state.coords[3][0]} onChange={(e) => this.handleOnChange(e, 3)} />
+				<span style={spanStyle}><b>3:</b></span><Slider id="slider5" color="#008300" value={this.state.coords[4][0]} onChange={(e) => this.handleOnChange(e, 4)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider6" color="#0000FF" value={this.state.coords[5][0]} onChange={(e) => this.handleOnChange(e, 5)} />
+				<span style={spanStyle}><b>4:</b></span><Slider id="slider7" color="#008300" value={this.state.coords[6][0]} onChange={(e) => this.handleOnChange(e, 6)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider8" color="#0000FF" value={this.state.coords[7][0]} onChange={(e) => this.handleOnChange(e, 7)} />
 
 				<div class="buttons-container">
 					<button type="button" class="button" id="set-default-button">НАЧ</button>
