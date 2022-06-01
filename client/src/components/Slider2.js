@@ -42,14 +42,20 @@ const Styles = styled.div`
 
 export var value2;
 
-export default class Slider extends React.Component {
+export default class Slider2 extends React.Component {
   state = {
     value: 250
   }
 
   handleOnChange = (e) => this.setState({ value: e.target.value })
 	
-  value2 = this.state.value;
+	/*constructor(value) {
+			this.value = value;
+		}
+		
+	get state() {
+			return this.value;
+		}*/
 	
   render() {
     return (
@@ -60,3 +66,4 @@ export default class Slider extends React.Component {
     )
   }
 }
+

@@ -42,7 +42,7 @@ const Styles = styled.div`
 
 export var value5;
 
-export default class Slider extends React.Component {
+export default class Slider5 extends React.Component {
   state = {
     value: 250
   }

@@ -42,7 +42,7 @@ const Styles = styled.div`
 
 export var value1;
 
-export default class Slider extends React.Component {
+export default class Slider1 extends React.Component {
   state = {
     value: 250
   }
@@ -50,7 +50,7 @@ export default class Slider extends React.Component {
   handleOnChange = (e) => this.setState({ value: e.target.value })
 	
   value1 = this.state.value;
-	
+
   render() {
     return (
       <Styles opacity={this.state.value > 10 ? (this.state.value / 500) : .1} color={this.props.color}>
@@ -60,3 +60,4 @@ export default class Slider extends React.Component {
     )
   }
 }
+

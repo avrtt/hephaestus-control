@@ -8,17 +8,22 @@ import Slider5 from './components/Slider5';
 import Slider6 from './components/Slider6';
 import Slider7 from './components/Slider7';
 import Slider8 from './components/Slider8';
-import { value1 } from './components/Slider1';
-import { value2 } from './components/Slider2';
-import { value3 } from './components/Slider3';
-import { value4 } from './components/Slider4';
-import { value5 } from './components/Slider5';
-import { value6 } from './components/Slider6';
-import { value7 } from './components/Slider7';
-import { value8 } from './components/Slider8';
 const spanStyle = {'position': 'absolute'}; 
+let s1 = new Slider1();
+let s2 = new Slider2();
+let s3 = new Slider3();
+let s4 = new Slider4();
+let s5 = new Slider5();
+let s6 = new Slider6();
+let s7 = new Slider7();
+let s8 = new Slider8();
 
-var controller_coordinates = [
+// тестирование экспорта из другого модуля
+//var myModule = require('./components/module_test');
+//var name = myModule.name;
+//alert(name);
+
+/*var controller_coordinates = [
 			[100, 20],
 			[170, 120],
 			[120, 220],
@@ -27,18 +32,20 @@ var controller_coordinates = [
 			[270, 120],
 			[220, 220],
 			[200, 320]
-		];
+		];*/
 
-/*var controller_coordinates = [
-			[value1, value1],
-			[value2, value2],
-			[value3, value3],
-			[value4, value4],
-			[value5, value5],
-			[value6, value6],
-			[value7, value7],
-			[value8, value8]
-		]; */
+console.log(s1.state.value);
+
+var controller_coordinates = [
+			[s1.state.value, s1.state.value],
+			[s2.state.value, s2.state.value],
+			[s3.state.value, s3.state.value],
+			[s4.state.value, s4.state.value],
+			[s5.state.value, s5.state.value],
+			[s6.state.value, s6.state.value],
+			[s7.state.value, s7.state.value],
+			[s8.state.value, s8.state.value]
+		]; 
 
 const s = JSON.stringify(controller_coordinates);
 
@@ -58,11 +65,43 @@ class App extends Component {
     this.draw()
   }
 
-  componentDidUpdate() {
-    this.draw()
+  //componentDidUpdate() {
+    //this.draw()
+  //}
+  
+  componentDidUpdate(prevState) {
+  if (prevState.controller_coordinates !== this.state.controller_coordinates) {
+    console.log('pokemons state has changed.')
+  }
+}
+  
+  state = {
+	  controller_coordinates: [
+			[s1.state.value, s1.state.value],
+			[s2.state.value, s2.state.value],
+			[s3.state.value, s3.state.value],
+			[s4.state.value, s4.state.value],
+			[s5.state.value, s5.state.value],
+			[s6.state.value, s6.state.value],
+			[s7.state.value, s7.state.value],
+			[s8.state.value, s8.state.value]
+		]
   }
 
 draw() {
+	
+	this.state.controller_coordinates = [
+			[s1.state.value, s1.state.value],
+			[s2.state.value, s2.state.value],
+			[s3.state.value, s3.state.value],
+			[s4.state.value, s4.state.value],
+			[s5.state.value, s5.state.value],
+			[s6.state.value, s6.state.value],
+			[s7.state.value, s7.state.value],
+			[s8.state.value, s8.state.value]
+		]; 
+		
+	//console.log(this.state.controller_coordinates);
 	
 	var canvas = document.getElementById("grid");
 	if (canvas.getContext) {
@@ -82,30 +121,30 @@ draw() {
     
     context.fillStyle = "green";
 	context.beginPath();
-	context.arc(controller_coordinates[0][0], controller_coordinates[0][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[0][0], this.state.controller_coordinates[0][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[1][0], controller_coordinates[1][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[1][0], this.state.controller_coordinates[1][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[2][0], controller_coordinates[2][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[2][0], this.state.controller_coordinates[2][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[3][0], controller_coordinates[3][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[3][0], this.state.controller_coordinates[3][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	
 	context.fillStyle = "blue";
 	context.beginPath();
-	context.arc(controller_coordinates[4][0], controller_coordinates[4][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[4][0], this.state.controller_coordinates[4][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[5][0], controller_coordinates[5][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[5][0], this.state.controller_coordinates[5][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[6][0], controller_coordinates[6][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[6][0], this.state.controller_coordinates[6][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
 	context.beginPath();
-	context.arc(controller_coordinates[7][0], controller_coordinates[7][1], 5, 0, 2 * Math.PI, true);
+	context.arc(this.state.controller_coordinates[7][0], this.state.controller_coordinates[7][1], 5, 0, 2 * Math.PI, true);
 	context.fill();
   }
 }
