@@ -16,10 +16,11 @@ enableWs(app)
 let wsCon = null;
 app.ws('/ws', (ws, req) => {
   wsCon = ws
+  console.log("ws:\n", ws)
   ws.on('message', msg => {
     ws.send(msg)
     let parsed = JSON.parse(msg)
-    console.log(parsed)
+    console.log("Server:\n", parsed)
   })
 
   ws.on('close', () => {
@@ -128,10 +129,14 @@ async function run() {
   // return
   try {
     let r = await con.call('pos', [start[0], start[1], start[2], start[3], start[4], start[5], 1500, 1500])
-
+    let coords = [[start[0], start[1]], [start[2], start[3]], [start[4], start[5]], [1500, 1500]]
+    console.log(coords)
     if (wsCon != null) {
-      let s = JSON.stringify(r);
+      let s = JSON.stringify(coords);
       wsCon.send(s);
+    }
+    else {
+    console.log("No ws connection")
     }
   } catch (err) {
     console.error(err);

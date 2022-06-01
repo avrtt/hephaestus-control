@@ -15,18 +15,14 @@ class App extends Component {
 				[50, 50],
 				[50, 50],
 				[50, 50],
-				[50, 50],
-				[50, 50],
-				[50, 50],
-				[50, 50],
-				[50, 50],
+				[50, 50]
 			]
 		}
 	}
 
-	handleOnChange = (e, index) => {
+	handleOnChange = (e, index1, index2) => {
 		let oldCoords = [...this.state.coords];
-		oldCoords[index] = [e.target.value, e.target.value];
+		oldCoords[index1][index2] = parseFloat(e.target.value);
 		this.setState({ coords: oldCoords });
 		let s = JSON.stringify(oldCoords);
 		this.socket.send(s);
@@ -39,6 +35,7 @@ class App extends Component {
 			setTimeout(() => {
 				let s = JSON.stringify(this.state.coords);
 				this.socket.send(s);
+				console.log("OldCoords:\n", s);
 			}, 100)
 		}
 
@@ -86,46 +83,18 @@ class App extends Component {
 				5, 0, 2 * Math.PI, true
 			);
 			context.fill();
+
+			context.fillStyle = "blue";
 			context.beginPath();
 			context.arc(
 				this.state.coords[2][0],
 				this.state.coords[2][1],
-				5, 0, 2 * Math.PI, true
-			);
+				5, 0, 2 * Math.PI, true);
 			context.fill();
 			context.beginPath();
 			context.arc(
 				this.state.coords[3][0],
 				this.state.coords[3][1],
-				5, 0, 2 * Math.PI, true
-			);
-			context.fill();
-
-			context.fillStyle = "blue";
-			context.beginPath();
-			context.arc(
-				this.state.coords[4][0],
-				this.state.coords[4][1],
-				5, 0, 2 * Math.PI, true);
-			context.fill();
-			context.beginPath();
-			context.arc(
-				this.state.coords[5][0],
-				this.state.coords[5][1],
-				5, 0, 2 * Math.PI, true
-			);
-			context.fill();
-			context.beginPath();
-			context.arc(
-				this.state.coords[6][0],
-				this.state.coords[6][1],
-				5, 0, 2 * Math.PI, true
-			);
-			context.fill();
-			context.beginPath();
-			context.arc(
-				this.state.coords[7][0],
-				this.state.coords[7][1],
 				5, 0, 2 * Math.PI, true
 			);
 			context.fill();
@@ -165,14 +134,14 @@ class App extends Component {
 					<div id="grid-coordinates"></div>
 				</div>
 
-				<span style={spanStyle}><b>1:</b></span><Slider id="slider1" color="#008300" value={this.state.coords[0][0]} onChange={(e) => this.handleOnChange(e, 0)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider2" color="#0000FF" value={this.state.coords[1][0]} onChange={(e) => this.handleOnChange(e, 1)} />
-				<span style={spanStyle}><b>2:</b></span><Slider id="slider3" color="#008300" value={this.state.coords[2][0]} onChange={(e) => this.handleOnChange(e, 2)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider4" color="#0000FF" value={this.state.coords[3][0]} onChange={(e) => this.handleOnChange(e, 3)} />
-				<span style={spanStyle}><b>3:</b></span><Slider id="slider5" color="#008300" value={this.state.coords[4][0]} onChange={(e) => this.handleOnChange(e, 4)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider6" color="#0000FF" value={this.state.coords[5][0]} onChange={(e) => this.handleOnChange(e, 5)} />
-				<span style={spanStyle}><b>4:</b></span><Slider id="slider7" color="#008300" value={this.state.coords[6][0]} onChange={(e) => this.handleOnChange(e, 6)} />
-				<span style={spanStyle}><b> </b></span><Slider id="slider8" color="#0000FF" value={this.state.coords[7][0]} onChange={(e) => this.handleOnChange(e, 7)} />
+				<span style={spanStyle}><b>1:</b></span><Slider id="slider1" color="#008300" value={this.state.coords[0][0]} onChange={(e) => this.handleOnChange(e, 0, 0)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider2" color="#0000FF" value={this.state.coords[0][1]} onChange={(e) => this.handleOnChange(e, 0, 1)} />
+				<span style={spanStyle}><b>2:</b></span><Slider id="slider3" color="#008300" value={this.state.coords[1][0]} onChange={(e) => this.handleOnChange(e, 1, 0)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider4" color="#0000FF" value={this.state.coords[1][1]} onChange={(e) => this.handleOnChange(e, 1, 1)} />
+				<span style={spanStyle}><b>3:</b></span><Slider id="slider5" color="#008300" value={this.state.coords[2][0]} onChange={(e) => this.handleOnChange(e, 2, 0)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider6" color="#0000FF" value={this.state.coords[2][1]} onChange={(e) => this.handleOnChange(e, 2, 1)} />
+				<span style={spanStyle}><b>4:</b></span><Slider id="slider7" color="#008300" value={this.state.coords[3][0]} onChange={(e) => this.handleOnChange(e, 3, 0)} />
+				<span style={spanStyle}><b> </b></span><Slider id="slider8" color="#0000FF" value={this.state.coords[3][1]} onChange={(e) => this.handleOnChange(e, 3, 1)} />
 
 				<div class="buttons-container">
 					<button type="button" class="button" id="set-default-button">НАЧ</button>
