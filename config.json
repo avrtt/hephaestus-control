@@ -1,0 +1,45 @@
+{
+    "listen": [
+        {
+            "module": "itmp",
+            "url": "ws://localhost:1884/ws"
+        }
+    ],
+    "board": [
+        {
+            "name": "MOT853.110",
+            "usart": {
+                "drv_x": {
+                    "module": "drv",
+                    "cfg": {
+                        "addr": "itmp.serial://COM14?baudRate=115200~10"
+                    }
+                },
+                "drv_y": {
+                    "module": "drv",
+                    "cfg": {
+                        "addr": "itmp.serial://COM14?baudRate=115200~11"
+                    }
+                },
+                "drv_z": {
+                    "module": "drv",
+                    "cfg": {
+                        "addr": "itmp.serial://COM14?baudRate=115200~12"
+                    }
+                }
+            }
+        },
+        {
+            "name": "RMD",
+            "usart": {
+                "rmd": {
+                    "module": "rmd",
+                    "cfg": {
+                        "addr": "itmp.serial://COM3?baudRate=115200~10",
+                        "fake": true
+                    }
+                }
+            }
+        }
+    ]
+}

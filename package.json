@@ -8,7 +8,11 @@
     },
     "dependencies": {
         "body-parser": "^1.18.3",
+        "botcorejs": "^2.1.4",
         "express": "^4.16.4",
+        "express-ws": "^5.0.2",
+        "itmp": "^2.0.10",
+        "itmplinkserial": "^2.0.4",
         "mobx": "^6.6.0",
         "nodemon": "^2.0.16",
         "react-helmet": "^6.1.0",

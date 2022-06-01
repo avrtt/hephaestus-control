@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { observable, makeObservable, action } from "mobx"
 
 const sliderThumbStyles = (props) => (`
   width: 20px;
@@ -40,24 +41,16 @@ const Styles = styled.div`
   }
 `;
 
-export var value1;
-
-export default class Slider1 extends React.Component {
-  state = {
-    value: 250
-  }
-
-  handleOnChange = (e) => this.setState({ value: e.target.value })
-	
-  value1 = this.state.value;
+class Slider extends React.Component {
 
   render() {
     return (
-      <Styles opacity={this.state.value > 10 ? (this.state.value / 500) : .1} color={this.props.color}>
-        <input type="range" min={0} max={500} value={this.state.value} className="slider" step="10" onChange={this.handleOnChange} />
-        <div><span class="left">({this.state.value}, {this.state.value})</span></div>
+      <Styles opacity={this.props.value > 10 ? (this.props.value / 500) : .1} color={this.props.color}>
+        <input type="range" min={0} max={500} value={this.props.value} className="slider" step="10" onChange={this.props.onChange} />
+        <div><span class="left">({this.props.value}, {this.props.value})</span></div>
       </Styles>
     )
   }
 }
 
+export default Slider;
